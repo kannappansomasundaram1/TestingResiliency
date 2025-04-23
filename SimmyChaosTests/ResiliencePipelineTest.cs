@@ -1,12 +1,11 @@
 using Polly;
 using Polly.CircuitBreaker;
-using Polly.Extensions.Http;
 using Polly.Simmy;
 using Polly.Timeout;
 
 namespace SimmyChaosTests;
 
-public class SimmyTest
+public class ResiliencePipelineTest
 {
     //https://www.pollydocs.org/chaos/#usage
 
@@ -53,18 +52,5 @@ public class SimmyTest
                 SamplingDuration = TimeSpan.FromMinutes(1), MinimumThroughput = 5, FailureRatio = 0.7
             })
             .AddTimeout(TimeSpan.FromSeconds(1));
-    }
-    
-    
-    //TODO Use this in tests
-    static IAsyncPolicy<HttpResponseMessage> BuildCircuitBreakerRetryAndTimeoutPerRetryPolicy()
-    {
-        var retry = HttpPolicyExtensions
-            .HandleTransientHttpError()
-            .RetryAsync(1);
-
-        var requestTimeout = Policy.TimeoutAsync<HttpResponseMessage>(TimeSpan.FromSeconds(50));
-
-        return Policy.WrapAsync(retry, requestTimeout);
     }
 }
