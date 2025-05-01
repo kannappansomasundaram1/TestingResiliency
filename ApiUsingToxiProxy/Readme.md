@@ -32,19 +32,6 @@ toxiproxy-cli toxic add -t latency -a latency=6000 todo
 ```
 <img width="850" alt="image" src="https://github.com/user-attachments/assets/25a76835-f576-4936-824f-9d64dc7b3067" />
 
-### Check latency
-Now hit the URL with Postman
-```shell
-curl --location 'https://localhost:8443/todos/1' \
---header 'host: dummyjson.com'
-```
-### Simulate connection reset
-
-```shell
-toxiproxy-cli toxic add -t reset_peer  -n rest_todo  todo
-```
-![img.png](img.png)
-
 ### Inspect all toxics for a proxy
 ```shell
 curl --location 'http://localhost:8474/proxies/todo'
@@ -71,3 +58,37 @@ response with something like below
     ]
 }
 ```
+
+### Check latency
+Now hit the URL with Postman
+```shell
+curl --location 'https://localhost:8443/todos/1' \
+--header 'host: dummyjson.com'
+```
+### Simulate connection reset
+
+simulate connection reset by setting **"enabled": false** in the below request
+```shell
+curl --location 'http://localhost:8474/proxies/todo' \
+--header 'Content-Type: application/json' \
+--data '{
+    "name": "todo",
+    "listen": "127.0.0.1:8443",
+    "upstream": "dummyjson.com:443",
+    "enabled": false,
+    "Logger": {},
+    "toxics": [
+        {
+            "attributes": {
+                "latency": 6000,
+                "jitter": 0
+            },
+            "name": "latency_downstream",
+            "type": "latency",
+            "stream": "downstream",
+            "toxicity": 1
+        }
+    ]
+}'
+```
+
