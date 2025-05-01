@@ -2,9 +2,9 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimmyChaosTests", "SimmyChaosTests\SimmyChaosTests.csproj", "{EF56AE60-E5CE-41D5-9100-CB382836DDE3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppHost", "AppHost\AppHost.csproj", "{4BD64B5B-551B-4BA4-B35D-9AE569DD1E62}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aspire.AppHost", "Aspire.AppHost\Aspire.AppHost.csproj", "{4BD64B5B-551B-4BA4-B35D-9AE569DD1E62}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceDefaults", "ServiceDefaults\ServiceDefaults.csproj", "{4545F373-4131-4458-A3E5-B240375F88EF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aspire.ServiceDefaults", "Aspire.ServiceDefaults\Aspire.ServiceDefaults.csproj", "{4545F373-4131-4458-A3E5-B240375F88EF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiUsingToxiProxy", "ApiUsingToxiProxy\ApiUsingToxiProxy.csproj", "{60466897-CB12-4280-AE82-A0C5D3817EEF}"
 EndProject
