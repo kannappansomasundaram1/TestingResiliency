@@ -71,3 +71,12 @@ response with something like below
     ]
 }
 ```
+
+## API Setup
+
+```mermaid
+graph LR
+API --> ToxiProxy --> DUMMY(DummyJson.com)
+```
+
+
