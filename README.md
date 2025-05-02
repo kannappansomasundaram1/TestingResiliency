@@ -1,3 +1,10 @@
+## API Setup
+
+```mermaid
+graph LR
+API --> DUMMY(DummyJson.com)
+```
+
 Toxiproxy is a framework for simulating network conditions.
 
 ## Installing ToxiProxy
@@ -72,11 +79,38 @@ response with something like below
 }
 ```
 
-## API Setup
+## API Setup with Proxy
 
 ```mermaid
 graph LR
 API --> ToxiProxy --> DUMMY(DummyJson.com)
 ```
+## Load testing
 
+### Remove Proxy to start with
+
+```shell
+toxiproxy-cli toxic remove -n latency_downstream todo
+```
+### cd to Api folder
+```shell
+cd ApiUsingToxiProxy/
+```
+### Run Load tests
+```shell
+k6 run --vus 2 --duration 60s --rps 2 ./loadtest.js
+```
+### Add Latency
+Add latency to the proxy after load test has started
+```shell
+toxiproxy-cli toxic add -t latency -a latency=6000 todo
+```
+After a few timeouts you will see circuit breaker open
+### Remove Latency
+Remove latency to the proxy after sometime
+```shell
+toxiproxy-cli toxic remove -n latency_downstream todo
+```
+circuit breaker should be closed
+http status code should be 200 after the circuit breaker is closed
 

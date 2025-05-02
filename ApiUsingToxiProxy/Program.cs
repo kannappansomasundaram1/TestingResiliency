@@ -11,8 +11,9 @@ builder.AddServiceDefaults();
 builder.Services.AddHttpClient<ITodoClient, TodoClient>()
     .ConfigureHttpClient(client =>
     {
-        client.BaseAddress = new Uri("https://localhost:8443");
-        client.DefaultRequestHeaders.Add("Host", "dummyjson.com");
+        // client.BaseAddress = new Uri("https://localhost:8443");
+        // client.DefaultRequestHeaders.Add("Host", "dummyjson.com");
+        client.BaseAddress = new Uri("https://dummyjson.com");
     })
     .AddResilienceHandler("MyResiliencePolicy", (p, c) => GetResilienceBuilder(p));
 
